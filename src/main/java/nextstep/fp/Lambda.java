@@ -53,4 +53,14 @@ public class Lambda {
         }
         return total;
     }
+
+    public static int sumStrategy(List<Integer> numbers, AddStrategy addStrategy){
+        int total = 0;
+        for (int number : numbers){
+            if (addStrategy.isAdd(number)){
+                total += number;
+            }
+        }
+        return total;
+    }
 }

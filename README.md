@@ -1,26 +1,73 @@
-## [NEXTSTEP 플레이그라운드의 미션 진행 과정](https://github.com/next-step/nextstep-docs/blob/master/playground/README.md)
+- Optional 잘 사용하기
+1. isPresent()함수 사용하지 말고 ifPresent() 함수, orElse, orElseThorw 함수 사용하기
+2. orElse는 상수나 변수를 반환할 때 사용할 것
+3. orElseGet는 매개변수로 함수를 넣을 떄 사용할 것 
+4. Optional은 반환을 할 때만 사용을 할 것, 멤버 변수나, 함수의 매개변수로 사용하지 말 것--> 불필요한 객체생성 및 직렬화가 없음 
+5. flatMap( Optional을 반환) 와 같은 API를 잘 활용하면 가독성을 개선할 수 있음 
 
----
-## 학습 효과를 높이기 위해 추천하는 미션 진행 방법
 
----
-1. 피드백 강의 전까지 미션 진행 
-> 피드백 강의 전까지 혼자 힘으로 미션 진행. 미션을 진행하면서 하나의 작업이 끝날 때 마다 add, commit
-> 예를 들어 다음 숫자 야구 게임의 경우 0, 1, 2단계까지 구현을 완료한 후 push
 
-![mission baseball](https://raw.githubusercontent.com/next-step/nextstep-docs/master/playground/images/mission_baseball.png)
+21 또는 21에 가까우면 이김 
+king queen Jack --> 10
+Ace --> 1 or 11
+21에 가깝게 만든다면 계속 카드를 뽑을 수 있음 
+21을 초과하면 배팅액을 모두 잃음 
+딜러는 처음에 2장을 받고 16이하라면 1장 더 아니면 끝 --> 21초과하면 플레이어 승리 
+처음부터 21이라면 1.5배의 배팅액 
 
----
-2. 피드백 앞 단계까지 미션 구현을 완료한 후 피드백 강의를 학습한다.
+< 블랙잭 구현 과정 >
+1. 플레이어를 입력받는다. (, 기준으로)
+2. 각 플레이어마다 배팅금액을 입력받는다.
+3. 딜러와 플레이어들에게 2장씩 랜덤 카드를 배분한다.
+4. 각 플레이어들이 카드를 더 뽑을지 결정한다.
+   4-1. 이 때 21을 초과하면 게임이 종료된다. 배팅금액을 나머지사람들에게 나눠준다.
+5. 딜러의 숫자가 16이하인지 판단하고 16이하라면 한 장 더 뽑는다.
+    5-1. 이 때 21을 초과하면 게임이 종료된다. 배팅한 금액만큼 플레이어들은 수익을 얻는다.
+6. 딜러와 플레이어들의 결과들을 출력한다.
+7. 최종 수익을 발표한다. 
 
----
-3. Git 브랜치를 master 또는 main으로 변경한 후 피드백을 반영하기 위한 새로운 브랜치를 생성한 후 처음부터 다시 미션 구현을 도전한다.
 
-```
-git branch -a // 모든 로컬 브랜치 확인
-git checkout master // 기본 브랜치가 master인 경우
-git checkout main // 기본 브랜치가 main인 경우
 
-git checkout -b 브랜치이름
-ex) git checkout -b apply-feedback
-```
+
+< Class 설계 >
+
+controller
+List<Player> playerList = inputview.readPlayers();
+딜러와 playerList들에게 카드를 랜덤으로 부여한다.
+playerList를 순회하며 더 뽑을지 결정한다.
+딜러의 결과가 16이하라면 하나 더 뽑는다.
+결과 발표 
+
+
+< TDD 과정 >
+
+1. 클로버, 다이아, 하트, 스페이드중에서 그리고 Ace~King 중에서 랜덤한 카드를 생성해는지 테스트한다.
+2. 특정 카드를 보고 점수가 몇인지 올바르게 반환하는데 테스트한다.
+3. 
+
+
+model
+
+class Dealer
+    - 변수
+        - `내가 부여받은 카드이름`
+
+
+Class Player
+    - 변수
+        - `private int 배팅한금액`
+        - `내가 부여받은 카드이름`
+        
+
+interface Card
+
+- 생성자들은 Ace, 1, 2, 3, 4, 5, 6.... 들 중 하나를 입력받으면 해당 카드를 만들어낸다. 
+class Diamonds impelments Card
+class Clubs impelments Card
+class Hearts impelments Card
+class Spades impelments Card
+
+view
+Class InputView
+    - 메서드
+        - List<Player> readplayers() : player들을 입력받고 배팅할 금액까지 입력받는다.
