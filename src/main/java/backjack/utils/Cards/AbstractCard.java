@@ -1,26 +1,26 @@
 package backjack.utils.Cards;
 
 public abstract class AbstractCard implements Card {
-  private String typeName;
-  private String number;
+  private String suit;
+  private String rank;
 
-  public AbstractCard(String typeName, int num){
-    this.typeName = typeName;
-    this.number = CardTranslator.numberToString(num);
+  public AbstractCard(String suit, int num){
+    this.suit = suit;
+    this.rank = TranslatorToRank.numberToRank(num);
   }
 
   @Override
   public String getCardInfo(){
-    return number + typeName;
+    return rank + suit;
   }
 
   @Override
-  public String getTypeName(){
-    return typeName;
+  public String getSuit(){
+    return suit;
   }
 
   @Override
-  public String getNumber(){
-    return number;
+  public String getRank(){
+    return rank;
   }
 }

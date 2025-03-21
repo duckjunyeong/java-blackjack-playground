@@ -43,7 +43,8 @@ playerList를 순회하며 더 뽑을지 결정한다.
 
 1. 클로버, 다이아, 하트, 스페이드중에서 그리고 Ace~King 중에서 랜덤한 카드를 생성해는지 테스트한다.
 2. 특정 카드를 보고 점수가 몇인지 올바르게 반환하는데 테스트한다.
-3. 
+3. 카드의 리스트를 주었을 때 점수를 합산하는지 테스트한다.
+4. "에이스" 를 제외한 모든 숫자를 더하고 마지막에 ACE가 존재한다면 21에 가깝게 합산을 하는지 테스트한다.
 
 
 model
@@ -59,13 +60,21 @@ Class Player
         - `내가 부여받은 카드이름`
         
 
-interface Card
 
-- 생성자들은 Ace, 1, 2, 3, 4, 5, 6.... 들 중 하나를 입력받으면 해당 카드를 만들어낸다. 
+utils
+interface Card
+abstract class AbstractCard 
+
 class Diamonds impelments Card
 class Clubs impelments Card
 class Hearts impelments Card
 class Spades impelments Card
+
+class CardNumTranslator : 숫자가 주어지면 해당 숫자에 해당하는 CardNumber이름을 반환한다 ex) 1 -> "A"
+class RandomCardGenerator : 랜덤한 카드를 생성하는 클래스 
+class CardScoreCalcualtor : card 점수 계산 
+
+
 
 view
 Class InputView

@@ -1,11 +1,11 @@
 package backjack.utils.Cards;
 
-public enum CardType {
+public enum CardSuit {
   DIAMONDS("Diamonds"),CLUBS("Clubs"),HEARTS("Hearts"),SPADES("Spades");
 
   private String type;
 
-  CardType(String type){
+  CardSuit(String type){
     this.type = type;
   }
 

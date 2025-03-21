@@ -1,12 +1,12 @@
 package backjack.utils.Cards;
 
-import backjack.utils.RandomGenerator.RandomGenerator;
+import backjack.utils.RandomNumGenerator.RandomNumGenerator;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-public class CardManager {
+public class RandomCardGenerator {
   private final static Map<Integer, Function<Integer, Card>> cardCreatorFrame = new HashMap<>();
   private final static int START_CARD_TYPE = 0;
   private final static int END_CARD_TYPE = 4;
@@ -21,8 +21,8 @@ public class CardManager {
   }
 
   public static Card generateRandomCard() {
-    int cardType = RandomGenerator.getRandomNumber(START_CARD_TYPE, END_CARD_TYPE);
-    int cardNum = RandomGenerator.getRandomNumber(START_CARD_NUM, END_CARD_NUM);
+    int cardType = RandomNumGenerator.getRandomNumber(START_CARD_TYPE, END_CARD_TYPE);
+    int cardNum = RandomNumGenerator.getRandomNumber(START_CARD_NUM, END_CARD_NUM);
 
     return cardCreatorFrame.get(cardType).apply(cardNum);
   }
