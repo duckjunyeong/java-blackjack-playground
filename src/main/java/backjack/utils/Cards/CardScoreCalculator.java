@@ -1,24 +1,14 @@
 package backjack.utils.Cards;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class CardScoreCalculator {
   public static final int HIGHEST_SCORE = 21;
-  public static final int  ACE_HIGHER_SCORE = 11;
+  public static final int ACE_HIGHER_SCORE = 11;
   public static final int ACE_LOWER_SCORE = 1;
-  public static final int FACECARD_SCORE = 10;
-  public static final String ACE_NUMBER = "A";
-
-  private static final List<String> faceCards = Arrays.asList("K", "Q", "J");
-  public static final String NOT_ALLOW_ACE_CARD = "A number isn't determine";
 
   public static int getCardScore(Card card) {
-    if (isAceCard(card)) throw new IllegalArgumentException(NOT_ALLOW_ACE_CARD);
-
-    if (faceCards.contains(card.getRank())) return FACECARD_SCORE;
-
-    return Integer.parseInt(card.getRank());
+    return card.getScore();
   }
 
   public static int getCardsScore(List<Card> cardList) {
@@ -48,7 +38,6 @@ public class CardScoreCalculator {
         .reduce(0, (x, y) -> x + y);
   }
 
-
   private static List<Card> getAceCards(List<Card> cardList) {
     return cardList.stream()
         .filter(card -> isAceCard(card))
@@ -56,7 +45,7 @@ public class CardScoreCalculator {
   }
 
   private static boolean isAceCard(Card card) {
-    return card.getRank().equals(ACE_NUMBER);
+    return card.getRank().equals(Rank.ACE);
   }
   
   private static boolean isAddEleven(int cardScore) {

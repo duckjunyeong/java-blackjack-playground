@@ -65,10 +65,10 @@ utils
 interface Card
 abstract class AbstractCard 
 
-class Diamonds impelments Card
-class Clubs impelments Card
-class Hearts impelments Card
-class Spades impelments Card
+class Diamonds impelments AbstractCard
+class Clubs impelments AbstractCard
+class Hearts impelments AbstractCard
+class Spades impelments AbstractCard
 
 class CardNumTranslator : 숫자가 주어지면 해당 숫자에 해당하는 CardNumber이름을 반환한다 ex) 1 -> "A"
 class RandomCardGenerator : 랜덤한 카드를 생성하는 클래스 
