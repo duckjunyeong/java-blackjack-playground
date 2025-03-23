@@ -17,6 +17,10 @@ public class Cards {
     this.cardList = new ArrayList<>();
   }
 
+  public void add(Card card){
+    cardList.add(card);
+  }
+
   public List<Card> getCardList(){
     return cardList;
   }

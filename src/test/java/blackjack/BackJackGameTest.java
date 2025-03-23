@@ -1,14 +1,12 @@
 package blackjack;
 
 import backjack.Controller.BackJackGame;
-import backjack.Model.Dealer;
-import backjack.Model.Deck;
-import backjack.Model.Name;
-import backjack.Model.Player;
+import backjack.Model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,18 +30,17 @@ public class BackJackGameTest {
     Player jun = new Player(new Name("jun"));
     Player han = new Player(new Name("han"));
     Player kim = new Player(new Name("kim"));
-    List<Player> playerList = Arrays.asList(jun, han, kim);
+    List<Participant> participants = Arrays.asList(jun, han, kim, dealer);
 
-    backJackGame.initDraw(playerList, dealer, deck);
-    List<String> infoList = getPlayersCardInfo(playerList);
+    backJackGame.initDraw(participants, deck);
+    List<String> infoList = getPlayersCardInfo(participants);
 
-    System.out.println(dealer.getMyCardInfo());
     for (String info : infoList){
       System.out.println(info);
     }
   }
 
-  private static List<String> getPlayersCardInfo(List<Player> playerList) {
+  private static List<String> getPlayersCardInfo(List<Participant> playerList) {
     return playerList.stream()
         .map(player -> player.getMyCardInfo()).collect(Collectors.toList());
   }
