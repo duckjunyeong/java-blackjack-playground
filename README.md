@@ -65,6 +65,9 @@ Ace --> 1 or 11
      - Player들 반복문돌리고 하나하나의 플레이어들의 카드리스트에 넣어준다. 반복문을 돌리고 난 후 딜러에게 카드를 준다
 
 7. 승자의 점수를 뽑고 그 승자의 점수에 해당하는 participant들을 출력해본다. 
+    - List<Participant> 를 넘겨주면 가장 먼저 dealer의 점수가 21이 넘는지 확인한다. 
+    - 승자의 점수를 추출하고 승자들을 추출한다.
+    - 전체 배당액을 승자들의 size만큼 나누고 반복문을 돌려서 결과에 넣어줄 때 블랙잭이면 1.5배를 넣어준다.
 
 
 
@@ -97,19 +100,11 @@ Class Player
         
 
 
-utils
-interface Card
-abstract class AbstractCard 
-
-class Diamonds impelments AbstractCard
-class Clubs impelments AbstractCard
-class Hearts impelments AbstractCard
-class Spades impelments AbstractCard
-
-class CardNumTranslator : 숫자가 주어지면 해당 숫자에 해당하는 CardNumber이름을 반환한다 ex) 1 -> "A"
-class RandomCardGenerator : 랜덤한 카드를 생성하는 클래스 
-class CardScoreCalcualtor : card 점수 계산 
-
+< utils >
+Class Referee
+    - 메서드
+        - Map<Participant, Money> getGameResult() // 승자들에게 수익의 정보를 반환 
+        - 
 
 
 view
