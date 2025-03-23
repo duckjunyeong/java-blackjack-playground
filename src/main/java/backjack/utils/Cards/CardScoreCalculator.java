@@ -3,52 +3,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CardScoreCalculator {
-  public static final int HIGHEST_SCORE = 21;
-  public static final int ACE_HIGHER_SCORE = 11;
-  public static final int ACE_LOWER_SCORE = 1;
 
-  public static int getCardScore(Card card) {
-    return card.getScore();
-  }
+  public static int getCardsScore(List<Card> cardList){
+    int score = calculateScore(cardList);
+    int aceCardCnt = getAceCardCnt(cardList);
 
-  public static int getCardsScore(List<Card> cardList) {
-    List<Card> aceCardList = getAceCards(cardList);
-
-    int cardScoreSum = getSumExceptAceCard(cardList);
-
-    cardScoreSum = addAceCardScore(aceCardList, cardScoreSum);
-    return cardScoreSum;
-  }
-
-  private static int addAceCardScore(List<Card> aceCardList, int cardScoreSum) {
-    for (int i = 0; i < aceCardList.size(); i++){
-      if (isAddEleven(cardScoreSum)) {
-        cardScoreSum += ACE_HIGHER_SCORE;
-        continue;
-      }
-      cardScoreSum += ACE_LOWER_SCORE;
+    while (aceCardCnt > 0 && score + 10 <= 21){
+      score += 10;
+      --aceCardCnt;
     }
-    return cardScoreSum;
+
+    return score;
   }
 
-  private static Integer getSumExceptAceCard(List<Card> cardList) {
+  private static Integer calculateScore(List<Card> cardList) {
     return cardList.stream()
-        .filter(card -> !isAceCard(card))
-        .map(CardScoreCalculator::getCardScore)
+        .map((card) -> card.getScore())
         .reduce(0, (x, y) -> x + y);
   }
 
-  private static List<Card> getAceCards(List<Card> cardList) {
-    return cardList.stream()
-        .filter(card -> isAceCard(card))
-        .collect(Collectors.toList());
-  }
-
-  private static boolean isAceCard(Card card) {
-    return card.getRank().equals(Rank.ACE);
-  }
-  
-  private static boolean isAddEleven(int cardScore) {
-    return HIGHEST_SCORE - cardScore >= 11;
+  private static int getAceCardCnt(List<Card> cardList) {
+    return cardList.stream().filter(card -> card.getRank() == Rank.ACE).collect(Collectors.toList()).size();
   }
 }

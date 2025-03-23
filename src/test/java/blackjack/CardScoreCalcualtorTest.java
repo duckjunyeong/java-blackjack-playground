@@ -20,8 +20,8 @@ public class CardScoreCalcualtorTest {
   void 올바르게_카드의_점수를_반환하는가(){
     Card card1 = new Card(Suit.DIAMONDS, Rank.FIVE);
     Card card2 = new Card(Suit.DIAMONDS, Rank.KING);
-    assertThat(cardScoreCalcualtor.getCardScore(card1)).isEqualTo(5);
-    assertThat(cardScoreCalcualtor.getCardScore(card2)).isEqualTo(10);
+    assertThat(card1.getRank()).isEqualTo("5");
+    assertThat(card2.getRank()).isEqualTo("10");
   }
 
   @Test
