@@ -62,9 +62,10 @@ Ace --> 1 or 11
 
 
 8. 딜러와 플레이어들의 점수를 공개한다. 
-    - 딜러의 점수가 21을 초과했는지 확인한다. 초과했다면 플레이어들의 배당금액만큼 받는다.
-    - 딜러와 플레이어모두 블랙잭인지 계산해야한다. 그리고 기록해야함 자신의 멤버 변수로? private int isBlackJack
-    - 모두 블랙잭이면 각자 배당한 금액을 돌려받는다.
+    - 딜러 및 플레이어들에게 지급될 돈을 관리하는 Map자료구조를 사용 "jun" -> 1000 "dealer" -> 2000 ..... 
+    - 딜러의 점수가 21을 초과했는지 확인한다. 초과했다면 플레이어들의 배당금액만큼 받는다. ==> 즉 자기자신의 배당액도 알고 있어야한다는거네 
+    - 모두 블랙잭이면 각자 모두 수익 0
+   
     - 이긴 사람을 제외한 나머지 사람들의 배당금액을 이긴사람에게 균등하게 분배한다.
             - 딜러 및 플레이들을 순회하면서 각자의 점수를 21로 뺀다. 
             - 가장 작은 값을 가진 player들을 따로 추출한다.
@@ -74,27 +75,28 @@ Ace --> 1 or 11
 
 < Class 설계 >
 
-controller
-List<Player> playerList = inputview.readPlayers();
-딜러와 playerList들에게 카드를 랜덤으로 부여한다.
-playerList를 순회하며 더 뽑을지 결정한다.
+< controller >
+
+List<Player> playerList = inputview.readPlayers(); // 이름만 입력받음 
+
+
+
 딜러의 결과가 16이하라면 하나 더 뽑는다.
 결과 발표 
 
 
-
-
-model
+< model >
 
 class Dealer
     - 변수
-        - `내가 부여받은 카드이름`
+        - `private List<Card> cardList`
 
 
 Class Player
     - 변수
-        - `private int 배팅한금액`
-        - `내가 부여받은 카드이름`
+        - `private Name name;`
+        - `private Money diveDends`
+        - `private List<Card> cardList`
         
 
 
