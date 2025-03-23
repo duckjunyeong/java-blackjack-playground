@@ -9,10 +9,6 @@ public enum Suit implements CardInfo {
     this.suit = suit;
   }
 
-  public String getType(){
-    return suit;
-  }
-
   @Override
   public String getInfo() {
     return suit;

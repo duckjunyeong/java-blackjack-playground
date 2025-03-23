@@ -12,7 +12,6 @@ public class CardScoreCalculator {
       score += 10;
       --aceCardCnt;
     }
-
     return score;
   }
 
@@ -23,6 +22,8 @@ public class CardScoreCalculator {
   }
 
   private static int getAceCardCnt(List<Card> cardList) {
-    return cardList.stream().filter(card -> card.getRank() == Rank.ACE).collect(Collectors.toList()).size();
+    return cardList.stream()
+        .filter(card -> card.getRank() == Rank.ACE)
+        .collect(Collectors.toList()).size();
   }
 }
