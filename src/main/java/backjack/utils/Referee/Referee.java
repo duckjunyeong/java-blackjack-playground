@@ -18,11 +18,25 @@ public class Referee {
       return;
     }
 
+    if (isOnlyDealerBackJack(dealerScore, playerScore)){
+      dealerWinFromBackJack(dealer, player);
+      return;
+    }
+
     if (isBiggerThanDealer(dealerScore, playerScore)){
       playerWinFromScore(dealer, player);
       return;
     }
     dealerWinFromScore(dealer, player);
+  }
+
+  private static void dealerWinFromBackJack(Dealer dealer, Player player) {
+    player.addRevenue(new Money(player.getDividends().getMoney() * -1));
+    dealer.addRevenue(new Money(player.getDividends().getMoney()));
+  }
+
+  private static boolean isOnlyDealerBackJack(int dealerScore, int playerScore) {
+    return dealerScore == BLACKJACK_SCORE && playerScore != BLACKJACK_SCORE;
   }
 
   private static void dealerWinFromScore(Dealer dealer, Player player) {
