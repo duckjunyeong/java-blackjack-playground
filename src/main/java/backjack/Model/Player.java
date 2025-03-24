@@ -12,4 +12,12 @@ public class Player extends Participant {
     super(name);
     this.dividends = new Money(0);
   }
+
+  public Money getDividends(){
+    return dividends;
+  }
+
+  public void setDividends(Money dividends){
+    this.dividends = dividends;
+  }
 }

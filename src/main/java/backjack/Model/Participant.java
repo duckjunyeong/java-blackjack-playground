@@ -5,10 +5,12 @@ import backjack.utils.Cards.Card;
 public abstract class Participant implements HandHolder {
   private Cards cards;
   private Name name;
+  private Money revenue;
 
   public Participant(Name name){
     this.name = name;
     this.cards = new Cards();
+    this.revenue = new Money(0);
   }
 
   public Name getName(){
@@ -21,6 +23,23 @@ public abstract class Participant implements HandHolder {
 
   public void addCard(Card card){
     cards.add(card);
+  }
+
+  public String getMyRevenueInfo(){
+    return name.getName() + "의 수익: " + revenue.getMoney();
+  }
+
+  public void addRevenue(Money revenue){
+    double addMoney = revenue.getMoney();
+    this.revenue = new Money(addMoney + this.revenue.getMoney());
+  }
+
+  public Money getRevenue(){
+    return revenue;
+  }
+
+  public int getCardScore(){
+    return cards.getScore();
   }
 
   @Override

@@ -102,6 +102,8 @@ List<Player> playerList = inputview.readPlayers(); // 이름만 입력받음
 class Dealer
     - 변수
         - `private List<Card> cardList`
+        - `private int revenue`
+
 
 
 Class Player
@@ -109,14 +111,14 @@ Class Player
         - `private Name name;`
         - `private Money diveDends`
         - `private List<Card> cardList`
+        - `private int revenue`
         
 
 
 < utils >
 Class Referee
     - 메서드
-        - Map<Participant, Money> getGameResult() // 승자들에게 수익의 정보를 반환 
-        -  
+        - void determineVictory(Dealer dealer, Player player)   
 
 
 view

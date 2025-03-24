@@ -4,18 +4,18 @@ import java.util.Objects;
 
 public class Money {
   public static final String NEGATIVE_NUMBER = "음수를 사용할 수 없습니다.";
-  private int money;
+  private double money;
 
-  public Money(int money){
-    isValidMoney(money);
+  public Money(double money){
+    //isValidMoney(money);
     this.money = money;
   }
 
   private void isValidMoney(int money) {
-    if (money < 0) throw new IllegalArgumentException(NEGATIVE_NUMBER);
+    //if (money < 0) throw new IllegalArgumentException(NEGATIVE_NUMBER);
   }
 
-  public int getMoney(){
+  public double getMoney(){
     return money;
   }
 
