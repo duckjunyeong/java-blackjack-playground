@@ -42,7 +42,7 @@ public class BackJackGameTest {
 
   private static List<String> getPlayersCardInfo(List<Participant> playerList) {
     return playerList.stream()
-        .map(player -> player.getMyCardInfo()).collect(Collectors.toList());
+        .map(player -> player.getCardInfo()).collect(Collectors.toList());
   }
 
 }

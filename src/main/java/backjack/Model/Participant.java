@@ -25,7 +25,7 @@ public abstract class Participant implements HandHolder {
     cards.add(card);
   }
 
-  public String getMyRevenueInfo(){
+  public String getRevenueInfo(){
     return name.getName() + "의 수익: " + revenue.getMoney();
   }
 
@@ -43,7 +43,7 @@ public abstract class Participant implements HandHolder {
   }
 
   @Override
-  public String getMyCardInfo() {
+  public String getCardInfo() {
     return name.getName() + "가 가지고 있는 카드: " + cards.getCardListInfo();
   }
 
