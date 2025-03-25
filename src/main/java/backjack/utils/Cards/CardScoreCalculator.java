@@ -4,8 +4,6 @@ import java.util.stream.Collectors;
 
 public class CardScoreCalculator {
 
-  public static final int BUST_SCORE = -1;
-
   public static int getCardsScore(List<Card> cardList){
     int score = calculateScore(cardList);
     int aceCardCnt = getAceCardCnt(cardList);
@@ -15,7 +13,6 @@ public class CardScoreCalculator {
       --aceCardCnt;
     }
 
-    if (score > 21) return BUST_SCORE;
     return score;
   }
 

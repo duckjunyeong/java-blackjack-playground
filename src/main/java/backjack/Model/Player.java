@@ -20,4 +20,14 @@ public class Player extends Participant {
   public void setDividends(Money dividends){
     this.dividends = dividends;
   }
+
+  @Override
+  public String getCardAllInfo(){
+    return getCardInfo();
+  }
+
+  @Override
+  public int getTurnOrder(){
+    return 2;
+  }
 }

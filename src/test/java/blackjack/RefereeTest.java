@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class RefereeTest {
@@ -35,30 +34,28 @@ public class RefereeTest {
 
     getResult(playerList);
 
-    printResult(playerList);
+    //printResult(playerList);
   }
 
   @Test
   @DisplayName("Dealer의 점수가 21점을 초과했을 때 나머지 플레이어들에게 배당액을 받는가.")
   void dealer의_점수가_21점을_초과했을_때_배당액을_받는가(){
-    List<Player> playerList = enrollPlayer(Arrays.asList(new Name("jun"), new Name("kim"), new Name("han")), Arrays.asList(new Money(2000), new Money(5000), new Money(9000)));
+    List<Participant> playerList = enrollPlayer(Arrays.asList(new Name("jun"), new Name("kim"), new Name("han")), Arrays.asList(new Money(2000), new Money(5000), new Money(9000)));
 
     enrollInitialCards(playerList);
-    dealer.setCards(new Cards(Arrays.asList(deck.draw(), deck.draw(), deck.draw(),deck.draw(),deck.draw(),deck.draw(),deck.draw())));
+    for (int i = 0 ; i < 5; i++){
+      dealer.addCard(deck.draw());
+    }
     if (Referee.isDealerBust(dealer)){
       PayoutCalcualtor.payoutOnDealerBust(dealer, playerList);
     }
-    printResult(playerList);
   }
 
 
-  private void printResult(List<Player> playerList) {
-    List<Participant> participants = new ArrayList<>();
-    participants.add(dealer);
-    participants.addAll(playerList);
-    outputView.participantCardInfo(participants);
-    outputView.participantRevenueInfo(participants);
-  }
+//  private void printResult(List<Player> playerList) {
+//    outputView.allHandsOfPlayer(playerList);
+//    outputView.participantRevenueInfo(playerList);
+//  }
 
   private void getResult(List<Player> playerList) {
     for (Player player: playerList){
@@ -66,20 +63,20 @@ public class RefereeTest {
     }
   }
 
-  private void enrollInitialCards(List<Player> playerList) {
+  private void enrollInitialCards(List<Participant> participants) {
     dealer.setCards(new Cards(Arrays.asList(deck.draw(), deck.draw())));
-    playerList.forEach(player -> player.setCards(new Cards(Arrays.asList(deck.draw(), deck.draw()))));
+    participants.forEach(participant -> participant.setCards(new Cards(Arrays.asList(deck.draw(), deck.draw()))));
 
   }
 
-  List<Player> enrollPlayer(List<Name> names, List<Money> bettingAmount){
-    List<Player> playerList = names.stream()
+  List<Participant> enrollPlayer(List<Name> names, List<Money> bettingAmount){
+    List<Participant> participants = names.stream()
         .map(Player::new)
         .collect(Collectors.toList());
 
-    for (int i = 0; i < playerList.size(); i++){
-      playerList.get(i).setDividends(bettingAmount.get(i));
+    for (int i = 0; i < participants.size(); i++){
+      participants.get(i).setDividends(bettingAmount.get(i));
     }
-    return playerList;
+    return participants;
   }
 }

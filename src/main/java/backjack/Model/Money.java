@@ -7,8 +7,11 @@ public class Money {
   private double money;
 
   public Money(double money){
-    //isValidMoney(money);
     this.money = money;
+  }
+
+  public Money(String money){
+    this(Integer.parseInt(money));
   }
 
   private void isValidMoney(int money) {

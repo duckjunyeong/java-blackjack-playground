@@ -30,10 +30,8 @@ public class Cards {
     return cardList.stream().map(Card::getCardInfo).collect(Collectors.joining(", "));
   }
 
-  public int getScore(){
-    int score = CardScoreCalculator.getCardsScore(cardList);
-
-    if (cardList.size() == 2 && score == 21) return -1;
-    return score;
+  public String getOnlyOneCardInfo(){
+    return cardList.get(0).getCardInfo();
   }
+
 }

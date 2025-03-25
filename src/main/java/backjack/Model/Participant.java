@@ -1,6 +1,7 @@
 package backjack.Model;
 
 import backjack.utils.Cards.Card;
+import backjack.utils.Cards.CardScoreCalculator;
 
 public abstract class Participant implements HandHolder {
   private Cards cards;
@@ -17,16 +18,8 @@ public abstract class Participant implements HandHolder {
     return name;
   }
 
-  public boolean isDealer(){
-    return false;
-  }
-
   public void addCard(Card card){
     cards.add(card);
-  }
-
-  public String getRevenueInfo(){
-    return name.getName() + "의 수익: " + revenue.getMoney();
   }
 
   public void addRevenue(Money revenue){
@@ -39,7 +32,22 @@ public abstract class Participant implements HandHolder {
   }
 
   public int getCardScore(){
-    return cards.getScore();
+    return CardScoreCalculator.getCardsScore(cards.getCardList());
+  }
+
+  public String getOnlyOneCardInfo() {
+    return name.getName() + "가 가지고 있는 카드: " + getCardList().getOnlyOneCardInfo();
+  }
+
+  public String getRevenueInfo(){
+    return name.getName() + "의 수익: " + revenue.getMoney();
+  }
+
+  public abstract int getTurnOrder();
+
+  @Override
+  public void setDividends(Money dividends){
+    this.dividends = dividends;
   }
 
   @Override
