@@ -82,6 +82,11 @@ Ace --> 1 or 11
       - 블랙잭 or 스코어로 승리한 경우 (플레이어의 배당액의 1.0배의 수익)
 
 
+플레이어가 버스트 걸린경우
+- 바로 돈 가져가고 딜러에게 돈 주면 됨
+
+딜러가 버스트 걸린경우
+- 모든 플레이어에게 돈을 나눠주는데 블랙잭이면 1.5배줘야함. 
 
 
 
@@ -120,6 +125,10 @@ Class Referee
     - 메서드
         - void determineVictory(Dealer dealer, Player player)   
 
+
+class PayoutCalcualtor
+    - 메서드
+        - void determinePayout(Dealer dealer, Player player, BlackJackResult blackjackResult)
 
 view
 Class InputView
