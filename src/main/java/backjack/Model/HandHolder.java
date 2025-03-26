@@ -5,5 +5,4 @@ public interface HandHolder {
   void setCards(Cards cards);
   String getCardInfo();
   String getCardAllInfo();
-  void setDividends(Money dividends);
 }

@@ -7,6 +7,7 @@ public abstract class Participant implements HandHolder {
   private Cards cards;
   private Name name;
   private Money revenue;
+  private Money dividends;
 
   public Participant(Name name){
     this.name = name;
@@ -45,9 +46,19 @@ public abstract class Participant implements HandHolder {
 
   public abstract int getTurnOrder();
 
-  @Override
+  public abstract void takeDrawing(Deck deck);
+  public abstract void initialSetting(Deck deck);
+
   public void setDividends(Money dividends){
     this.dividends = dividends;
+  }
+
+  public Money getDividends(){
+    return dividends;
+  }
+
+  public boolean isDealer() {
+    return false;
   }
 
   @Override

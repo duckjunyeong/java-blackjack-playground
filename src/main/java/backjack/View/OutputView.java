@@ -27,7 +27,7 @@ public class OutputView {
     System.out.println(dealer.getOnlyOneCardInfo());
   }
 
-  public void participantCardInfo(Participant participant) {
+  public static void participantCardInfo(Participant participant) {
     System.out.println(participant.getCardInfo());
   }
 
@@ -37,11 +37,11 @@ public class OutputView {
     }
   }
 
-  public void annoucementBust(Participant player) {
+  public static void annoucementBust(Participant player) {
     System.out.println(ANNOUCEMENT_BUST);
   }
 
-  public void annouceDealerAddExtraCard() {
+  public static void annouceDealerAddExtraCard() {
     System.out.println("dealer is score 16, so add extra card");
   }
 

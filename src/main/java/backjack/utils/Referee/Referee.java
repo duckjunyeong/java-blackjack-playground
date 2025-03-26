@@ -13,21 +13,19 @@ public class Referee {
   public static final int BUST_SCORE = 22;
   public static final int MINIMUM_DEALER_SCORE = 17;
 
-  public static void determineGameResult(Dealer dealer, List<Participant> nonBustedPlayers){
-    if (isDealerBust(dealer)){
-      PayoutCalcualtor.payoutOnDealerBust(dealer, nonBustedPlayers);
-      return;
-    }
-
-    for (Player player : playerList){
-      PayoutCalcualtor.calculatePayout(dealer, player, Referee.determineVictory(dealer, player));
+  public static void determineGameResult(Dealer dealer, List<Participant> participants){
+    for (Participant participant : participants){
+      PayoutCalcualtor.calculatePayout(dealer, participant, Referee.determineVictory(dealer, participant));
     }
   }
 
   // CardScoreCalculator 위임
-  public static BlackJackResult determineVictory(Dealer dealer, Player player) {
+  public static BlackJackResult determineVictory(Dealer dealer, Participant participant) {
     int dealerScore = CardScoreCalculator.getCardsScore(dealer.getCardList().getCardList());
-    int playerScore = CardScoreCalculator.getCardsScore(player.getCardList().getCardList());
+    int playerScore = CardScoreCalculator.getCardsScore(participant.getCardList().getCardList());
+
+    if (playerScore > 21) return BlackJackResult.PLAYER_LOSE;
+    if (dealerScore > 21) return BlackJackResult.PLAYER_WIN;
 
     if (isDraw(dealerScore, playerScore)) return BlackJackResult.DRAW;
 
